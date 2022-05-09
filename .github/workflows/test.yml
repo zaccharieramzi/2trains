@@ -27,4 +27,4 @@ jobs:
         pip install pytest
         pip install .
     - name: Test with pytest
-      run: pytest -s my_package/tests
+      run: pytest -s 2trains/tests
