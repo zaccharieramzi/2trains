@@ -57,22 +57,25 @@ model = remove_initial_downsample(model)
 ## Training loop ##
 if torch.cuda.is_available():
     model.cuda()
+model.eval()
 # warm-up
-for _ in range(5):
-    X = next(iter(dataloader))[0]
-    if torch.cuda.is_available():
-        X = X.cuda()
-    model(X)
+with torch.no_grad():
+    for _ in range(5):
+        X = next(iter(dataloader))[0]
+        if torch.cuda.is_available():
+            X = X.cuda()
+        model(X)
 # actual timing
 timing_epochs = 1
 start = time.time()
-for X, y in tqdm(dataloader):
-    if torch.cuda.is_available():
-        X = X.cuda()
-    output = model(X)
-    if torch.cuda.is_available():
-        output = output.cpu()
-    _ = output.numpy().item()
+with torch.no_grad():
+    for X, y in tqdm(dataloader):
+        if torch.cuda.is_available():
+            X = X.cuda()
+        output = model(X)
+        if torch.cuda.is_available():
+            output = output.cpu()
+        _ = output.detach().numpy().item()
 end = time.time()
 print('Training took {:.2f} seconds'.format(end - start))
 print('This gives a per epoch cost of {:.2f} seconds'.format((end - start) / timing_epochs))
