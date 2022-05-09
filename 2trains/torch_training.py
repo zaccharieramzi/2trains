@@ -73,7 +73,7 @@ if torch.cuda.is_available():
 
 # warm-up
 for _ in range(5):
-    X = next(iter(dataloader))
+    X = next(iter(dataloader))[0]
     if torch.cuda.is_available():
         X = X.cuda()
     model(X)
