@@ -9,8 +9,8 @@ from tqdm import tqdm
 
 
 seed_everything(0, workers=True)
-# unused trainer to replicate the benchopt setting
-trainer = AcceleratorConnector()
+# unused accelerator to replicate the benchopt setting
+AcceleratorConnector()
 ## Data ##
 # Get the cifar dataset, normalize it and augment it
 normalization_mean = (0.4914, 0.4822, 0.4465)
