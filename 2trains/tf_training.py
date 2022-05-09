@@ -1,13 +1,13 @@
 import time
 
+from keras.applications.resnet import ResNet
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import backend
-from tensorflow.keras.applications.resnet import ResNet
 from tensorflow.keras import initializers
 from tensorflow.keras import layers
 from tensorflow.keras import models
-from tensorflow_addons import extend_with_decoupled_weight_decay
+from tensorflow_addons.optimizers import extend_with_decoupled_weight_decay
 import tensorflow_datasets as tfds
 from tqdm import tqdm
 
@@ -27,7 +27,7 @@ normalization = tf.keras.layers.Normalization(
 )
 batch_size = 128
 ds = tfds.load(
-    'cifar_10',
+    'cifar10',
     split='train',
     as_supervised=True,
 ).map(
