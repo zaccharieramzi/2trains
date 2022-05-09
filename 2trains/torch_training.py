@@ -67,7 +67,7 @@ scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
 criterion = torch.nn.CrossEntropyLoss()
 if torch.cuda.is_available():
     model.cuda()
-    criterion.cuda()
+    criterion
 
 ## Training loop ##
 
