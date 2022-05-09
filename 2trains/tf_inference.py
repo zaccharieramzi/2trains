@@ -70,11 +70,6 @@ def basic_block(x, filters, stride=1, use_bias=True, conv_shortcut=True,
     """
     bn_axis = 3
     kernel_size = 3
-    torch_init = initializers.VarianceScaling(
-        scale=2.0,
-        mode='fan_out',
-        distribution='untruncated_normal',
-    )
 
     if conv_shortcut:
         shortcut = layers.Conv2D(
@@ -168,11 +163,6 @@ def stack_block(
 
 
 def remove_initial_downsample(large_model, use_bias=False):
-    torch_init = initializers.VarianceScaling(
-        scale=2.0,
-        mode='fan_out',
-        distribution='untruncated_normal',
-    )
     trimmed_model = models.Model(
         inputs=large_model.get_layer('conv2_block1_1_conv').input,
         outputs=large_model.outputs,
