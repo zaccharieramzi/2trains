@@ -75,7 +75,7 @@ with torch.no_grad():
         output = model(X)
         if torch.cuda.is_available():
             output = output.cpu()
-        _ = output.detach().numpy().item()
+        _ = output.detach().numpy()
 end = time.time()
 print('Training took {:.2f} seconds'.format(end - start))
 print('This gives a per epoch cost of {:.2f} seconds'.format((end - start) / timing_epochs))
