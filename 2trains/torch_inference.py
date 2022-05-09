@@ -55,7 +55,8 @@ model = models.resnet18(num_classes=10)
 model = remove_initial_downsample(model)
 
 ## Training loop ##
-
+if torch.cuda.is_available():
+    model.cuda()
 # warm-up
 for _ in range(5):
     X = next(iter(dataloader))[0]
