@@ -1,3 +1,4 @@
+from gc import callbacks
 import time
 
 from keras.applications.resnet import ResNet
@@ -357,6 +358,14 @@ cback_list = tf.keras.callbacks.CallbackList(
 # training and using a progressbar
 
 ## Training loop ##
+# warm-up
+model.fit(
+    ds.take(1),
+    callbacks=cback_list,
+    epochs=5,
+    verbose=0,
+)
+# actual timing
 timing_epochs = 1
 start = time.time()
 model.fit(

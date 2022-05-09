@@ -70,6 +70,14 @@ if torch.cuda.is_available():
     criterion.cuda()
 
 ## Training loop ##
+
+# warm-up
+for _ in range(5):
+    X = next(iter(dataloader))
+    if torch.cuda.is_available():
+        X = X.cuda()
+    model(X)
+# actual timing
 timing_epochs = 1
 start = time.time()
 for _ in range(min(timing_epochs, n_epochs)):
