@@ -131,3 +131,7 @@ dmypy.json
 # My usual private notebooks directory
 
 personal_experiments/
+
+# Data
+data
+data/
