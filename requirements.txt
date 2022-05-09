@@ -1,5 +1,7 @@
-pytorch
-torchvision
+numpy
+torch
 tensorflow
 tensorflow-addons
 tensorflow-datasets
+torchvision
+tqdm
