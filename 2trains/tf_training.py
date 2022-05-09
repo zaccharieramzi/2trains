@@ -2,6 +2,7 @@ import os
 import time
 
 os.environ['TF_CUDNN_USE_AUTOTUNE'] = "1"
+os.environ['TF_ENABLE_WINOGRAD_NONFUSED'] = '1'
 
 from keras.applications.resnet import ResNet
 import numpy as np
