@@ -13,6 +13,7 @@ import tensorflow_datasets as tfds
 from tqdm import tqdm
 
 
+tf.random.set_seed(0)
 ## Data ##
 # Get the cifar dataset, normalize it and augment it
 normalization_mean = (0.4914, 0.4822, 0.4465)

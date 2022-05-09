@@ -1,11 +1,20 @@
 import time
 
+from pytorch_lightning import Trainer
+from pytorch_lightning.utilities.seed import seed_everything
 import torch
 from torch.optim import SGD
 from torchvision import datasets, models, transforms
 from tqdm import tqdm
 
 
+seed_everything(0, workers=True)
+# unused trainer to replicate the benchopt setting
+trainer = Trainer(
+    accelerator="auto", strategy="single_device", max_epochs=-1,
+    enable_checkpointing=False,
+    enable_model_summary=False
+)
 ## Data ##
 # Get the cifar dataset, normalize it and augment it
 normalization_mean = (0.4914, 0.4822, 0.4465)
