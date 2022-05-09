@@ -1,6 +1,5 @@
 import time
 
-from pytorch_lightning.trainer.connectors.accelerator_connector import AcceleratorConnector
 from pytorch_lightning.utilities.seed import seed_everything
 import torch
 from torch.optim import SGD
@@ -9,8 +8,7 @@ from tqdm import tqdm
 
 
 seed_everything(0, workers=True)
-# unused accelerator to replicate the benchopt setting
-AcceleratorConnector()
+torch.backends.cudnn.benchmark = True
 ## Data ##
 # Get the cifar dataset, normalize it and augment it
 normalization_mean = (0.4914, 0.4822, 0.4465)
